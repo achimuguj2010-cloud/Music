@@ -1,0 +1,299 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: sans-serif; background: #0a0a0a; }
+.app { display: flex; height: 100vh; min-height: 600px; background: #0a0a0a; color: #fff; flex-direction: column; overflow: hidden; }
+
+/* ============ AUTH PAGE ============ */
+.auth-page { 
+   display: flex; 
+   align-items: center; 
+   justify-content: center; 
+   height: 100vh; 
+   background: linear-gradient(135deg, #0a0a0a 0%, #0d2a0d 30%, #0a0a0a 100%);
+   position: relative;
+   overflow: hidden;
+ }
+.auth-page::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(29, 185, 84, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+.auth-container { 
+   background: #1a1a1a;
+   border-radius: 16px; 
+   padding: 48px 40px;
+   width: 100%; 
+   max-width: 420px; 
+   box-shadow: 0 15px 40px rgba(29, 185, 84, 0.2), inset 0 1px 0 rgba(29, 185, 84, 0.1);
+   border: 1px solid rgba(29, 185, 84, 0.3);
+   position: relative;
+   z-index: 1;
+ }
+.auth-logo { 
+  font-size: 32px; 
+  font-weight: 700; 
+  color: #1db954; 
+  margin-bottom: 40px; 
+  display: flex; 
+  align-items: center; 
+  gap: 12px; 
+  text-align: center; 
+  justify-content: center;
+  letter-spacing: 0.5px;
+}
+.auth-logo i { font-size: 36px; }
+.auth-form { 
+  margin-bottom: 24px; 
+}
+.auth-form h2 { 
+  font-size: 24px; 
+  margin-bottom: 28px; 
+  text-align: center;
+  color: #fff;
+  font-weight: 600;
+}
+.form-group { 
+  margin-bottom: 18px; 
+}
+.form-group label { 
+  display: block; 
+  font-size: 11px; 
+  color: #1db954; 
+  margin-bottom: 8px; 
+  text-transform: uppercase; 
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+.form-group input { 
+  width: 100%; 
+  padding: 12px 14px; 
+  background: #1a1a1a;
+  border: 1.5px solid #2a2a2a;
+  border-radius: 8px; 
+  color: #fff; 
+  font-size: 14px; 
+  transition: all 0.3s ease;
+}
+.form-group input::placeholder { 
+   color: #777; 
+ }
+.form-group input:hover { 
+  border-color: #1db954;
+  background: #1d1d1d;
+}
+.form-group input:focus { 
+   outline: none; 
+   border-color: #1db954;
+   background: #1d1d1d;
+   box-shadow: 0 0 0 3px rgba(29, 185, 84, 0.2);
+ }
+.form-error { 
+  color: #ff6b6b; 
+  font-size: 12px; 
+  margin-bottom: 16px; 
+  text-align: center;
+  background: rgba(255, 107, 107, 0.1);
+  padding: 10px;
+  border-radius: 6px;
+  border-left: 3px solid #ff6b6b;
+}
+.auth-btn { 
+   width: 100%; 
+   padding: 12px 16px; 
+   background: linear-gradient(135deg, #1db954 0%, #1ed760 100%);
+   color: #000; 
+   border: none; 
+   border-radius: 8px; 
+   font-size: 14px; 
+   font-weight: 700; 
+   cursor: pointer; 
+   transition: all 0.3s ease;
+   text-transform: uppercase;
+   letter-spacing: 0.5px;
+   margin-top: 8px;
+ }
+.auth-btn:hover { 
+   transform: translateY(-3px);
+   box-shadow: 0 12px 25px rgba(29, 185, 84, 0.5);
+ }
+.auth-btn:active { 
+  transform: scale(0.98); 
+}
+.auth-toggle { 
+  text-align: center; 
+  font-size: 13px; 
+  color: #aaa;
+  margin-top: 20px;
+}
+.auth-toggle button { 
+  background: none; 
+  border: none; 
+  color: #1db954; 
+  cursor: pointer; 
+  font-size: 13px; 
+  font-weight: 600;
+  padding: 0 4px;
+  transition: all 0.2s ease;
+}
+.auth-toggle button:hover { 
+  color: #1ed760;
+  text-decoration: underline;
+}
+
+/* ============ MAIN APP ============ */
+.main-area { display: flex; flex: 1; overflow: hidden; }
+.sidebar { width: 220px; background: #111; padding: 16px; display: flex; flex-direction: column; gap: 20px; flex-shrink: 0; }
+.logo { font-size: 20px; font-weight: 500; color: #1db954; letter-spacing: -0.5px; display: flex; align-items: center; gap: 8px; }
+
+/* User Menu */
+.user-menu { position: relative; }
+.user-btn { background: none; border: none; color: #aaa; cursor: pointer; font-size: 20px; padding: 4px 8px; border-radius: 6px; transition: all 0.15s; }
+.user-btn:hover { background: #1a1a1a; color: #fff; }
+.user-dropdown { position: absolute; top: 100%; right: 0; background: #1a1a1a; border: 0.5px solid #333; border-radius: 6px; min-width: 150px; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.5); }
+.dropdown-item { padding: 10px 14px; font-size: 12px; color: #aaa; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.15s; }
+.dropdown-item:hover { background: #222; color: #fff; }
+
+.nav { display: flex; flex-direction: column; gap: 4px; }
+.nav-item { display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 6px; cursor: pointer; font-size: 13px; color: #aaa; transition: background 0.15s, color 0.15s; }
+.nav-item:hover, .nav-item.active { background: #1a1a1a; color: #fff; }
+.nav-item.active { color: #1db954; }
+.nav-item i { font-size: 18px; }
+.library-header { font-size: 11px; color: #666; text-transform: uppercase; letter-spacing: 1px; padding: 0 10px; }
+.playlist-item { display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 6px; cursor: pointer; font-size: 12px; color: #aaa; }
+.playlist-item:hover { background: #1a1a1a; color: #fff; }
+.playlist-thumb { width: 32px; height: 32px; border-radius: 4px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+.content { flex: 1; overflow-y: auto; padding: 24px; background: linear-gradient(180deg, #1a1a2e 0%, #111 200px); }
+.content::-webkit-scrollbar { width: 4px; }
+.content::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
+.greeting { font-size: 22px; font-weight: 500; margin-bottom: 20px; }
+.section-title { font-size: 16px; font-weight: 500; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; }
+.section-title span { font-size: 12px; color: #1db954; cursor: pointer; }
+.cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 14px; margin-bottom: 28px; }
+.card { background: #1a1a1a; border-radius: 8px; padding: 12px; cursor: pointer; transition: background 0.15s; position: relative; }
+.card:hover { background: #222; }
+.card:hover .play-btn { opacity: 1; transform: translateY(0); }
+.card-img { width: 100%; aspect-ratio: 1; border-radius: 6px; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; font-size: 36px; position: relative; overflow: hidden; }
+.card-title { font-size: 13px; font-weight: 500; margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.card-sub { font-size: 11px; color: #888; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.play-btn { position: absolute; bottom: 8px; right: 8px; width: 36px; height: 36px; background: #1db954; border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0; transform: translateY(4px); transition: opacity 0.15s, transform 0.15s; cursor: pointer; border: none; }
+.play-btn i { font-size: 16px; color: #000; margin-left: 2px; }
+.featured { background: #1a1a1a; border-radius: 10px; padding: 16px; margin-bottom: 28px; display: flex; gap: 16px; align-items: center; }
+.featured-img { width: 80px; height: 80px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 40px; flex-shrink: 0; }
+.featured-info h2 { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
+.featured-info p { font-size: 12px; color: #888; margin-bottom: 10px; }
+.play-featured { background: #1db954; color: #000; border: none; padding: 8px 20px; border-radius: 20px; font-size: 13px; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+.recent-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 28px; }
+.recent-item { background: #1a1a1a; border-radius: 6px; display: flex; align-items: center; gap: 10px; overflow: hidden; cursor: pointer; transition: background 0.15s; }
+.recent-item:hover { background: #252525; }
+.recent-thumb { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+.recent-name { font-size: 12px; font-weight: 500; }
+.player { height: 72px; background: #181818; border-top: 0.5px solid #2a2a2a; display: flex; align-items: center; padding: 0 20px; gap: 16px; flex-shrink: 0; }
+.now-playing { display: flex; align-items: center; gap: 10px; width: 200px; flex-shrink: 0; }
+.np-thumb { width: 44px; height: 44px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+.np-info { flex: 1; min-width: 0; }
+.np-title { font-size: 12px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.np-artist { font-size: 11px; color: #888; }
+.np-like { color: #aaa; cursor: pointer; font-size: 16px; padding: 4px; border: none; background: transparent; }
+.np-like.liked { color: #1db954; }
+.controls { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.ctrl-btns { display: flex; align-items: center; gap: 16px; }
+.ctrl-btn { background: none; border: none; color: #aaa; cursor: pointer; font-size: 18px; padding: 4px; transition: color 0.15s; }
+.ctrl-btn:hover { color: #fff; }
+.ctrl-btn.active { color: #1db954; }
+.play-pause { width: 34px; height: 34px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: none; cursor: pointer; transition: transform 0.1s; }
+.play-pause:hover { transform: scale(1.05); }
+.play-pause i { font-size: 16px; color: #000; }
+.progress-bar { width: 100%; display: flex; align-items: center; gap: 8px; }
+.time { font-size: 11px; color: #888; width: 30px; text-align: center; }
+.bar-track { flex: 1; height: 4px; background: #333; border-radius: 2px; cursor: pointer; position: relative; }
+.bar-fill { height: 100%; background: #1db954; border-radius: 2px; transition: width 0.5s linear; }
+.bar-track:hover .bar-fill { background: #1ed760; }
+.vol-area { display: flex; align-items: center; gap: 8px; width: 160px; flex-shrink: 0; justify-content: flex-end; }
+.vol-icon { color: #aaa; font-size: 18px; cursor: pointer; }
+.vol-track { width: 80px; height: 4px; background: #333; border-radius: 2px; cursor: pointer; }
+.vol-fill { height: 100%; background: #aaa; border-radius: 2px; width: 70%; }
+.search-bar { display: flex; align-items: center; background: #1a1a1a; border-radius: 20px; padding: 8px 14px; gap: 8px; margin-bottom: 20px; border: 0.5px solid #2a2a2a; }
+.search-bar input { background: none; border: none; outline: none; color: #fff; font-size: 13px; flex: 1; }
+.search-bar input::placeholder { color: #555; }
+.search-bar i { color: #888; font-size: 16px; }
+.tab-bar { display: flex; gap: 8px; margin-bottom: 20px; }
+.tab { padding: 6px 14px; border-radius: 20px; font-size: 12px; cursor: pointer; background: #1a1a1a; color: #aaa; border: 0.5px solid #2a2a2a; transition: all 0.15s; }
+.tab.active { background: #fff; color: #000; border-color: #fff; }
+
+/* ============ MOBILE APP RESPONSIVE UI ============ */
+@media (max-width: 768px) {
+  .main-area {
+    flex-direction: column-reverse; /* Pushes content up, navigation down */
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    gap: 10px;
+    background: #111;
+    border-top: 1px solid #2a2a2a;
+  }
+
+  /* Hide playlist text clutter to save screen space on mobile */
+  .sidebar > div:last-child, 
+  .logo, 
+  .user-menu {
+    display: none !important;
+  }
+
+  .nav {
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    gap: 0;
+  }
+
+  .nav-item {
+    flex-direction: column;
+    font-size: 10px;
+    gap: 4px;
+    padding: 6px;
+    flex: 1;
+    text-align: center;
+  }
+
+  .content {
+    padding: 16px;
+    padding-bottom: 90px; /* Prevents music player from covering up text */
+  }
+
+  .recent-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Compact Music Player for mobile screens */
+  .player {
+    bottom: 0;
+    position: relative;
+    height: 80px;
+    padding: 0 12px;
+    gap: 10px;
+    justify-content: space-between;
+  }
+
+  .now-playing {
+    width: 45%;
+  }
+
+  .controls {
+    width: 50%;
+  }
+
+  .vol-area {
+    display: none !important; /* Phones use hardware side buttons for volume */
+  }
+
+  .progress-bar {
+    width: 100%;
+  }
+}
