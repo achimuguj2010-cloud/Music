@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Play } from 'lucide-react';
-import type { JamendoTrack } from '@/services/jamendoApi';
+import type { ITunesTrack } from '@/services/itunesApi';
 
 interface TrackCardProps {
-  track: JamendoTrack;
+  track: ITunesTrack;
   index: number;
-  onPlay: (track: JamendoTrack, index: number) => void;
+  onPlay: (track: ITunesTrack, index: number) => void;
   isActive?: boolean;
 }
 
@@ -31,11 +31,11 @@ export default function TrackCard({ track, index, onPlay, isActive = false }: Tr
             : '0 4px 8px rgba(0, 0, 0, 0.2)',
         }}
       >
-        {track.image ? (
+        {track.artworkUrl100 ? (
           <>
             <img
-              src={track.image}
-              alt={track.name}
+              src={track.artworkUrl100}
+              alt={track.trackName}
               className="w-full h-full object-cover"
               style={{ opacity: imageLoaded ? 1 : 0, transition: 'opacity 0.3s ease' }}
               onLoad={() => setImageLoaded(true)}
@@ -78,16 +78,16 @@ export default function TrackCard({ track, index, onPlay, isActive = false }: Tr
         <h3
           className="font-semibold text-sm truncate"
           style={{ color: '#F3F4F6' }}
-          title={track.name}
+          title={track.trackName}
         >
-          {track.name}
+          {track.trackName}
         </h3>
         <p
           className="text-xs truncate mt-0.5"
           style={{ color: '#9CA3AF' }}
-          title={track.artist_name}
+          title={track.artistName}
         >
-          {track.artist_name}
+          {track.artistName}
         </p>
       </div>
     </div>

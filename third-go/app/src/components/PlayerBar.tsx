@@ -110,10 +110,10 @@ export default function PlayerBar() {
                 className="w-11 h-11 rounded flex-shrink-0 overflow-hidden"
                 style={{ backgroundColor: '#1E1E28' }}
               >
-                {currentTrack.image ? (
+                {currentTrack.artworkUrl100 ? (
                   <img
-                    src={currentTrack.image}
-                    alt={currentTrack.name}
+                    src={currentTrack.artworkUrl100}
+                    alt={currentTrack.trackName}
                     className="w-full h-full object-cover"
                   />
                 ) : (
@@ -127,10 +127,10 @@ export default function PlayerBar() {
                   className="text-sm font-medium truncate"
                   style={{ color: '#F3F4F6' }}
                 >
-                  {currentTrack.name}
+                  {currentTrack.trackName}
                 </p>
                 <p className="text-xs truncate" style={{ color: '#9CA3AF' }}>
-                  {currentTrack.artist_name}
+                  {currentTrack.artistName}
                 </p>
               </div>
             </>

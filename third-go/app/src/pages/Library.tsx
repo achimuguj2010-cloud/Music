@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Clock, Play, Trash2 } from 'lucide-react';
 import { useAudio } from '@/contexts/AudioContext';
-import type { JamendoTrack } from '@/services/jamendoApi';
+import type { ITunesTrack } from '@/services/itunesApi';
 
 interface LibraryItem {
-  track: JamendoTrack;
+  track: ITunesTrack;
   addedAt: string;
 }
 
@@ -37,7 +37,7 @@ export default function Library() {
     }
   }, [library]);
 
-  const handlePlayTrack = (track: JamendoTrack, index: number) => {
+  const handlePlayTrack = (track: ITunesTrack, index: number) => {
     const trackList = library.map(item => item.track);
     setTracks(trackList);
     playTrack(track, index, trackList);
@@ -218,10 +218,10 @@ export default function Library() {
                     className="w-9 h-9 rounded flex-shrink-0 overflow-hidden"
                     style={{ backgroundColor: '#1E1E28' }}
                   >
-                    {item.track.image ? (
+                    {item.track.artworkUrl100 ? (
                       <img
-                        src={item.track.image}
-                        alt={item.track.name}
+                        src={item.track.artworkUrl100}
+                        alt={item.track.trackName}
                         className="w-full h-full object-cover"
                       />
                     ) : (
@@ -234,18 +234,18 @@ export default function Library() {
                     className="text-sm font-medium truncate"
                     style={{ color: isCurrentTrack ? '#F59E0B' : '#F3F4F6' }}
                   >
-                    {item.track.name}
+                    {item.track.trackName}
                   </span>
                 </div>
 
                 {/* Artist */}
                 <span className="text-sm truncate" style={{ color: '#9CA3AF' }}>
-                  {item.track.artist_name}
+                  {item.track.artistName}
                 </span>
 
                 {/* Duration */}
                 <span className="text-sm text-center" style={{ color: '#9CA3AF' }}>
-                  {formatTime(item.track.duration)}
+                  {formatTime(item.track.trackTimeMillis / 1000)}
                 </span>
 
                 {/* Remove */}

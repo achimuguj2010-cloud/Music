@@ -1,8 +1,8 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
 import { Search as SearchIcon } from 'lucide-react';
 import { useAudio } from '@/contexts/AudioContext';
-import type { JamendoTrack } from '@/services/jamendoApi';
-import { searchTracks, fetchGenreTracks } from '@/services/jamendoApi';
+import type { ITunesTrack } from '@/services/itunesApi';
+import { searchTracks, fetchGenreTracks } from '@/services/itunesApi';
 import TrackCard from '@/components/TrackCard';
 import { gsap } from 'gsap';
 
@@ -20,7 +20,7 @@ const categories = [
 export default function Search() {
   const { playTrack, currentTrack, setTracks } = useAudio();
   const [query, setQuery] = useState('');
-  const [results, setResults] = useState<JamendoTrack[]>([]);
+  const [results, setResults] = useState<ITunesTrack[]>([]);
   const [loading, setLoading] = useState(false);
   const [searched, setSearched] = useState(false);
 
@@ -83,7 +83,7 @@ export default function Search() {
     [setTracks]
   );
 
-  const handlePlayTrack = (track: JamendoTrack, index: number) => {
+  const handlePlayTrack = (track: ITunesTrack, index: number) => {
     playTrack(track, index, results);
   };
 

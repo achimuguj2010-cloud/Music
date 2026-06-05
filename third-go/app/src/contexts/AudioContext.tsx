@@ -1,9 +1,9 @@
 import { createContext, useContext, useState, useRef, useCallback, useEffect, type ReactNode } from 'react';
-import type { JamendoTrack } from '@/services/jamendoApi';
+import type { ITunesTrack } from '@/services/itunesApi';
 
 interface AudioContextType {
   audio: HTMLAudioElement;
-  currentTrack: JamendoTrack | null;
+  currentTrack: ITunesTrack | null;
   currentIndex: number;
   isPlaying: boolean;
   isShuffle: boolean;
@@ -12,8 +12,8 @@ interface AudioContextType {
   currentTime: number;
   duration: number;
   volume: number;
-  tracks: JamendoTrack[];
-  playTrack: (track: JamendoTrack, index: number, trackList?: JamendoTrack[]) => void;
+  tracks: ITunesTrack[];
+  playTrack: (track: ITunesTrack, index: number, trackList?: ITunesTrack[]) => void;
   playTrackByIndex: (index: number) => void;
   togglePlay: () => void;
   nextTrack: () => void;
@@ -23,14 +23,14 @@ interface AudioContextType {
   toggleLike: () => void;
   seekTo: (percentage: number) => void;
   setVolumeLevel: (level: number) => void;
-  setTracks: (tracks: JamendoTrack[]) => void;
+  setTracks: (tracks: ITunesTrack[]) => void;
 }
 
 const AudioContext = createContext<AudioContextType | null>(null);
 
 export function AudioProvider({ children }: { children: ReactNode }) {
   const audioRef = useRef<HTMLAudioElement>(new Audio());
-  const [currentTrack, setCurrentTrack] = useState<JamendoTrack | null>(null);
+  const [currentTrack, setCurrentTrack] = useState<ITunesTrack | null>(null);
   const [currentIndex, setCurrentIndex] = useState(-1);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isShuffle, setIsShuffle] = useState(false);
@@ -39,7 +39,7 @@ export function AudioProvider({ children }: { children: ReactNode }) {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [volume, setVolume] = useState(0.8);
-  const [tracks, setTracks] = useState<JamendoTrack[]>([]);
+  const [tracks, setTracks] = useState<ITunesTrack[]>([]);
 
   const audio = audioRef.current;
   audio.volume = volume;
@@ -71,13 +71,13 @@ export function AudioProvider({ children }: { children: ReactNode }) {
     };
   }, [audio, isRepeat, tracks, isShuffle, currentIndex]);
 
-  const playTrack = useCallback((track: JamendoTrack, index: number, trackList?: JamendoTrack[]) => {
+  const playTrack = useCallback((track: ITunesTrack, index: number, trackList?: ITunesTrack[]) => {
     if (trackList) {
       setTracks(trackList);
     }
     setCurrentIndex(index);
     setCurrentTrack(track);
-    audio.src = track.audio;
+    audio.src = track.previewUrl || '';
     audio.play().catch(() => {});
     setIsPlaying(true);
     setIsLiked(false);
@@ -88,7 +88,7 @@ export function AudioProvider({ children }: { children: ReactNode }) {
     const track = tracks[index];
     setCurrentIndex(index);
     setCurrentTrack(track);
-    audio.src = track.audio;
+    audio.src = track.previewUrl || '';
     audio.play().catch(() => {});
     setIsPlaying(true);
     setIsLiked(false);

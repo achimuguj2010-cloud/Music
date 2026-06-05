@@ -1,8 +1,8 @@
 import { useEffect, useState, useRef } from 'react';
 import { gsap } from 'gsap';
 import { useAudio } from '@/contexts/AudioContext';
-import type { JamendoTrack } from '@/services/jamendoApi';
-import { fetchTrendingTracks, fetchChillTracks } from '@/services/jamendoApi';
+import type { ITunesTrack } from '@/services/itunesApi';
+import { fetchTrendingTracks, fetchChillTracks } from '@/services/itunesApi';
 import TrackCard from '@/components/TrackCard';
 import HeroVisualizer from '@/components/HeroVisualizer';
 
@@ -25,8 +25,8 @@ function TrackSection({
   currentTrackId,
 }: {
   title: string;
-  tracks: JamendoTrack[];
-  onPlayTrack: (track: JamendoTrack, index: number) => void;
+  tracks: ITunesTrack[];
+  onPlayTrack: (track: ITunesTrack, index: number) => void;
   sectionRef: React.RefObject<HTMLDivElement | null>;
   currentTrackId?: string;
 }) {
@@ -50,8 +50,8 @@ function TrackSection({
 
 export default function Home() {
   const { playTrack, currentTrack, setTracks } = useAudio();
-  const [trending, setTrending] = useState<JamendoTrack[]>([]);
-  const [chill, setChill] = useState<JamendoTrack[]>([]);
+  const [trending, setTrending] = useState<ITunesTrack[]>([]);
+  const [chill, setChill] = useState<ITunesTrack[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
@@ -130,7 +130,7 @@ export default function Home() {
     };
   }, [loading]);
 
-  const handlePlayTrack = (track: JamendoTrack, index: number) => {
+  const handlePlayTrack = (track: ITunesTrack, index: number) => {
     // Determine which list this track belongs to
     const trendingIndex = trending.findIndex(t => t.id === track.id);
     if (trendingIndex !== -1) {
